@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS OOP</title>
+    <script>
+        //feature set 1
+        function coinStack(starting_amount){
+            this.value = starting_amount;
+            this.add_coins = function(add_amount){
+                this.value = this.value + add_amount;
+            };
+            this.remove_coins = function(amount_removed){
+                if (this.value >= amount_removed){
+                    this.value = this.value - amount_removed;
+                    return amount_removed;
+                }
+                else if (this.value < amount_removed){
+                    var coinsRemoved = this.value;
+                    this.value = 0;
+                    return coinsRemoved;
+                }
+            }
+        }
+        var my_coin_stack = new coinStack(50);
+        console.log('my_coin_stack contains ', my_coin_stack.value, ' coins');
+//feature set 2
+        my_coin_stack.add_coins(15);
+        console.log('I have ', my_coin_stack.value, ' coins in my coin stack ');
+
+        my_coin_stack.remove_coins(37);
+        console.log('I have ', my_coin_stack.value, ' coins in my coin stack ');
+
+        my_coin_stack.remove_coins(55);
+        console.log('I have ', my_coin_stack.value, ' coins in my coin stack ');
+//feature set 3
+        coinStack.prototype.transfer_coins = function(from_obj, amount){
+            var amountRemoved = from_obj.remove_coins(amount);
+            this.add_coins(amountRemoved);
+            return amountRemoved;
+        };
+        var erics_coins = new coinStack(50);
+        var dans_coins = new coinStack(50);
+        console.log('eric has ', erics_coins.value, ' coins and dan has ', dans_coins.value, ' coins ');
+
+        amountTransfered = erics_coins.transfer_coins(dans_coins, 30);
+        console.log('eric has ', erics_coins.value, ' coins and dan has ', dans_coins.value, ' coins ');
+
+        amountTransfered = dans_coins.transfer_coins(erics_coins, 120);
+        console.log('eric has ', erics_coins.value, ' coins and dan has ', dans_coins.value, ' coins ');
+
+    </script>
+</head>
+<body>
+<h1>Javascript OOP Prototypes</h1>
+
+</body>
+</html>
