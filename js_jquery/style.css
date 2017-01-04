@@ -39,7 +39,8 @@ div {
 
 .card-back,
 .flag,
-.path {
+.path,
+.table {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -56,6 +57,9 @@ div {
 
 .path {
     background-image: url("images/optional_path.jpg");
+}
+.table {
+    background-image: url("images/dinner-table-settings.jpg");
 }
 
 .no-select {
